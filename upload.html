@@ -24,24 +24,17 @@
             <form id="uploadForm">
                 <div class="input-group">
                     <label class="input-label">Название видео</label>
-                    <input type="text" class="input-field" required>
+                    <input type="text" id="title" class="input-field" required>
                 </div>
                 
                 <div class="input-group">
                     <label class="input-label">Описание</label>
-                    <textarea class="input-field" rows="4"></textarea>
+                    <textarea id="description" class="input-field" rows="4"></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label class="input-label">Выберите видео</label>
-                    <div class="file-upload">
-                        <input type="file" id="videoFile" hidden accept="video/*">
-                        <label for="videoFile" class="button button-primary">
-                            <i class="fas fa-video"></i>
-                            Выбрать файл
-                        </label>
-                        <span id="fileName">Файл не выбран</span>
-                    </div>
+                    <label class="input-label">Ссылка на видео</label>
+                    <input type="text" id="url" class="input-field" placeholder="https://example.com/video.mp4" required>
                 </div>
 
                 <button type="submit" class="button button-primary">
@@ -52,31 +45,28 @@
         </div>
     </main>
 
-    <style>
-        .upload-card {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .upload-card h2 {
-            margin-bottom: 2rem;
-        }
-
-        .file-upload {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        #fileName {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-    </style>
-
+    <script src="script.js"></script>
     <script>
-        document.getElementById('videoFile').addEventListener('change', function(e) {
-            document.getElementById('fileName').textContent = e.target.files[0].name;
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const url = document.getElementById('url').value;
+
+            const videos = storage.get('videos');
+            videos.push({
+                id: videos.length + 1,
+                title,
+                description,
+                url,
+                views: 0,
+                timestamp: Date.now()
+            });
+
+            storage.set('videos', videos);
+            alert('Видео успешно загружено!');
+            window.location.href = 'index.html';
         });
     </script>
 </body>
