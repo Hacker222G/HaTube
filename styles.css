@@ -1,27 +1,54 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
     background-color: #333;
     color: white;
     padding: 10px 20px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo img {
+    height: 40px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
 }
 
 #search {
-    padding: 5px;
+    padding: 10px;
     width: 300px;
-    margin-top: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+#search-button {
+    padding: 10px;
+    border: none;
+    background-color: #ff4757;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+}
+
+#search-button:hover {
+    background-color: #ff6b81;
 }
 
 #video-list {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
+    justify-content: center;
 }
 
 .video-item {
@@ -30,8 +57,50 @@ header {
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.video-item:hover {
+    transform: scale(1.05);
 }
 
 .video-item video {
     width: 100%;
+    border-radius: 10px;
+}
+
+.video-item h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#pagination button:hover {
+    background-color: #ff4757;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
