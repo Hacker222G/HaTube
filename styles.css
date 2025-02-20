@@ -1,231 +1,134 @@
+:root {
+  --primary: #FF3B30;
+  --secondary: #007AFF;
+  --background: #0F0F0F;
+  --surface: #1F1F1F;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+  background-color: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-header .logo img {
-    height: 40px;
+/* Хедер */
+.header {
+  background: rgba(15, 15, 15, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.search-bar {
-    display: flex;
-    align-items: center;
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-#search {
-    padding: 10px;
-    width: 300px;
-    border: none;
-    border-radius: 5px 0 0 5px;
+/* Основной контент */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-#search-button {
-    padding: 10px;
-    border: none;
-    background-color: #ff4757;
-    color: white;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
+/* Карточки */
+.card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-#search-button:hover {
-    background-color: #ff6b81;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-#video-list {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    justify-content: center;
+/* Кнопки */
+.button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.video-item {
-    background-color: white;
-    margin: 10px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    border-radius: 10px;
-    transition: transform 0.2s;
+.button-primary {
+  background: var(--primary);
+  color: white;
 }
 
-.video-item:hover {
-    transform: scale(1.05);
+.button-primary:hover {
+  opacity: 0.9;
 }
 
-.video-item video {
-    width: 100%;
-    border-radius: 10px;
+/* Формы */
+.input-group {
+  margin-bottom: 1.5rem;
 }
 
-.video-item h3 {
-    margin: 10px 0;
-    font-size: 18px;
+.input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-#pagination {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
+.input-field {
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s;
 }
 
-#pagination button {
-    padding: 10px 15px;
-    margin: 0 5px;
-    border: none;
-    background-color: #333;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
-#pagination button:hover {
-    background-color: #ff4757;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-/* Стили для формы загрузки */
-.upload-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.upload-button {
-    background-color: #2ed573;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.upload-button:hover {
-    background-color: #20bf6b;
-}
-
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    border-radius: 5px;
-    color: white;
-    z-index: 1000;
-}
-
-.notification.success {
-    background-color: #2ed573;
-}
-
-.notification.error {
-    background-color: #ff4757;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Стили для чата */
-.chat-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#chat-messages {
-    height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.message {
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 5px;
-}
-
-.message.user {
-    background-color: #f1f1f1;
-    text-align: left;
-}
-
-.message.admin {
-    background-color: #2ed573;
-    color: white;
-    text-align: right;
-}
-
-#chat-form {
-    display: flex;
-}
-
-#chat-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#chat-form button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-#chat-form button:hover {
-    background-color: #555;
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
 }
