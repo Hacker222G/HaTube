@@ -5,18 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HuTube</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>HuTube</h1>
-        <input type="text" id="search" placeholder="Поиск видео...">
+        <div class="logo">
+            <img src="assets/logo.png" alt="HuTube">
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Поиск видео...">
+            <button id="search-button"><i class="fas fa-search"></i></button>
+        </div>
     </header>
 
     <main>
         <div id="video-list">
             <!-- Видео будут загружаться сюда -->
         </div>
+        <div id="pagination">
+            <!-- Пагинация будет загружаться сюда -->
+        </div>
     </main>
+
+    <footer>
+        <p>&copy; 2025 HuTube. Права не защищены, берите, кто хотите.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
