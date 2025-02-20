@@ -1,71 +1,59 @@
+<!-- В upload.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка видео</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- ... предыдущий код ... -->
 </head>
 <body>
-    <header class="header">
-        <div class="logo">HUTUBE</div>
-        <nav>
-            <a href="index.html" class="button">
-                <i class="fas fa-arrow-left"></i>
-                На главную
-            </a>
-        </nav>
-    </header>
+    <!-- ... header ... -->
 
     <main class="main-content">
         <div class="card upload-card">
-            <h2>Загрузить новое видео</h2>
+            <h2>Добавить веб-ресурс</h2>
             <form id="uploadForm">
                 <div class="input-group">
-                    <label class="input-label">Название видео</label>
+                    <label class="input-label">Название ресурса</label>
                     <input type="text" id="title" class="input-field" required>
                 </div>
                 
                 <div class="input-group">
-                    <label class="input-label">Описание</label>
-                    <textarea id="description" class="input-field" rows="4"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label class="input-label">Ссылка на видео</label>
-                    <input type="text" id="url" class="input-field" placeholder="https://example.com/video.mp4" required>
+                    <label class="input-label">URL сайта</label>
+                    <input type="url" id="url" class="input-field" 
+                           placeholder="https://example.com" 
+                           pattern="https?://.+" 
+                           required>
                 </div>
 
                 <button type="submit" class="button button-primary">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    Опубликовать
+                    <i class="fas fa-plus"></i>
+                    Добавить ресурс
                 </button>
             </form>
         </div>
     </main>
 
-    <script src="script.js"></script>
     <script>
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
-
-            const title = document.getElementById('title').value;
-            const description = document.getElementById('description').value;
-            const url = document.getElementById('url').value;
+            const urlInput = document.getElementById('url');
+            let url = urlInput.value;
+            
+            // Добавляем протокол если отсутствует
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
 
             const videos = storage.get('videos');
             videos.push({
                 id: videos.length + 1,
-                title,
-                description,
-                url,
+                title: document.getElementById('title').value,
+                url: url,
                 views: 0,
                 timestamp: Date.now()
             });
 
             storage.set('videos', videos);
-            alert('Видео успешно загружено!');
+            alert('Ресурс успешно добавлен!');
             window.location.href = 'index.html';
         });
     </script>
