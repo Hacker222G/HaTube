@@ -3,45 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка видео - HuTube</title>
+    <title>Загрузка видео</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="assets/logo.png" alt="HuTube">
+    <header class="header">
+        <div class="logo">RUTUBE</div>
+        <nav>
+            <a href="index.html" class="button">
+                <i class="fas fa-arrow-left"></i>
+                На главную
             </a>
-        </div>
+        </nav>
     </header>
 
-    <main class="upload-container">
-        <h2>Загрузить новое видео(для загрузки пишите ему https://t.me/FreeDonate333)</h2>
-        <form id="uploadForm">
-            <div class="form-group">
-                <label for="title">Название видео:</label>
-                <input type="text" id="title" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="description">Описание:</label>
-                <textarea id="description" rows="4"></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="filename">Имя файла видео (из папки videos/):</label>
-                <input type="text" id="filename" placeholder="video123.mp4" required>
-            </div>
+    <main class="main-content">
+        <div class="card upload-card">
+            <h2>Загрузить новое видео</h2>
+            <form id="uploadForm">
+                <div class="input-group">
+                    <label class="input-label">Название видео</label>
+                    <input type="text" class="input-field" required>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Описание</label>
+                    <textarea class="input-field" rows="4"></textarea>
+                </div>
 
-            <button type="submit" class="upload-button">
-                <i class="fas fa-upload"></i> Опубликовать
-            </button>
-        </form>
+                <div class="input-group">
+                    <label class="input-label">Выберите видео</label>
+                    <div class="file-upload">
+                        <input type="file" id="videoFile" hidden accept="video/*">
+                        <label for="videoFile" class="button button-primary">
+                            <i class="fas fa-video"></i>
+                            Выбрать файл
+                        </label>
+                        <span id="fileName">Файл не выбран</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="button button-primary">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Опубликовать
+                </button>
+            </form>
+        </div>
     </main>
 
-    <div id="notification" class="notification hidden"></div>
+    <style>
+        .upload-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    <script src="script.js"></script>
+        .upload-card h2 {
+            margin-bottom: 2rem;
+        }
+
+        .file-upload {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #fileName {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <script>
+        document.getElementById('videoFile').addEventListener('change', function(e) {
+            document.getElementById('fileName').textContent = e.target.files[0].name;
+        });
+    </script>
 </body>
 </html>
